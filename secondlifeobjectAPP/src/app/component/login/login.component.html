@@ -1,0 +1,43 @@
+<div *ngIf="info.token; else loggedOut">
+  <h5 class="text-primary">Information</h5>
+  <p>
+    <strong>Username:</strong> {{info.username}}<br/>
+    <strong>Roles:</strong> {{info.authorities}}<br/>
+    <strong>Token:</strong> {{info.token}}
+  </p>
+  <button class="btn btn-secondary" (click)="logout()">Logout</button>
+</div>
+
+<ng-template #loggedOut>
+  <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" [(ngModel)]="form.username" #username="ngModel"
+               required />
+        <div *ngIf="f.submitted && username.invalid">
+<!--          <div *ngIf="username.errors.required">Username is required</div>-->
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" [(ngModel)]="form.password" #password="ngModel"
+               required minlength="6" />
+        <div *ngIf="f.submitted && password.invalid">
+<!--          <div *ngIf="password.errors.required">Password is required</div>-->
+<!--          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>-->
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">Se connecter</button>
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          Echec de la connection : {{errorMessage}}
+        </div>
+      </div>
+    </form>
+    <hr/>
+    <p>Vous n'avez pas de compte ?</p>
+    <a class="btn btn-success" routerLink="../register">S'inscrire</a>
+  </div>
+</ng-template>
+
