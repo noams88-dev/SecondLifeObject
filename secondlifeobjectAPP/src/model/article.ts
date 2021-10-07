@@ -4,10 +4,10 @@ export class Article {
   id: number;
   name: string;
   description: string;
-  dateDebutEnchere: Date;
-  dateFinEnchere: Date;
-  prixInitial: number;
-  prixVente: number;
-  etatVente: string;
+  auctionStartDate: Date;
+  auctionEndDate: Date;
+  initialPrice: number;
+  finalPrice: number;
+  saleStatus: string;
   user: User;
 }

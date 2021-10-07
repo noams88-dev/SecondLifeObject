@@ -5,6 +5,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,35 +22,73 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(min=3, max = 50)
+    @Size(min=3, max=50)
     private String username;
 
     @NaturalId
     @NotBlank
-    @Size(max = 50)
+    @Size(max=50)
     @Email
     private String email;
 
     @NotBlank
-    @Size(min=6, max = 100)
+    @Size(min=6, max=100)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", 
     	joinColumns = @JoinColumn(name = "user_id"), 
     	inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @NotBlank
-    @Size(min=3, max = 50)
+    @Size(max=50)
     private String name;
+
+    @Size(max=50)
+    private String firstname;
+
+    @NotBlank
+    @PositiveOrZero
+    private int credit;
+
+    @Size(max=20)
+    private String phone;
+
+    private String imageUrl;
+
+    @OneToMany(targetEntity=Article.class, mappedBy = "user")
+    private Set<Article> articles = new HashSet<>();
 
     public User() { }
 
-    public User(String username, String email, String password) {
+    public User(String username,
+                String email,
+                String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String username,
+                String email,
+                String password,
+                Set<Role> roles,
+                String name,
+                String firstname,
+                int credit,
+                String phone,
+                String imageUrl,
+                Set<Article> articles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.name = name;
+        this.firstname = firstname;
+        this.credit = credit;
+        this.phone = phone;
+        this.imageUrl = imageUrl;
+        this.articles = articles;
     }
 
     public Long getId() {
@@ -98,5 +137,45 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 }

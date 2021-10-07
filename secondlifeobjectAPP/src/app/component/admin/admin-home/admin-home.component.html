@@ -1,156 +1,25 @@
-
-<!--<div>{{ connectedUser | json }}</div>-->
-<!--<div>{{ connectedUser?.id }}</div>-->
-<!--<div>{{ authService.variableGlobal }}</div>-->
-<!--<div>{{ getConnectedUserService.connectedUser | async }}</div>-->
-
-
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div *ngFor="let user of users" class="col-md-6 col-xl-3">-->
-<!--      <div class="card m-b-30">-->
-<!--        <div class="card-body row">-->
-<!--          <div class="col-6">-->
-<!--&lt;!&ndash;            <a href=""><img src="{{user?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="col-6 card-title align-self-center mb-0">-->
-<!--            <h5>{{user.username}}</h5>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <ul class="list-group list-group-flush">-->
-<!--          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Username : {{user.username}}</li>-->
-<!--          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email {{user.email}}</li>-->
-<!--&lt;!&ndash;          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Prénom {{user.role}}</li>&ndash;&gt;-->
-<!--        </ul>-->
-<!--        <div class="card-body">-->
-<!--          <div class="float-right btn-group btn-group-sm">-->
-<!--            <a (click)="onOpenModal(user, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
-<!--            <a (click)="onOpenModal(user, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Invisible Button Modal Modal &ndash;&gt;-->
-<!--  <button type="button" data-toggle="modal" id="invisibleButtonModal" style="display: none"></button>-->
-
-<!--  &lt;!&ndash; Add Employee Modal &ndash;&gt;-->
-<!--  <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="addEmployeeModalLabel">Add User</h5>-->
-<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--            <span aria-hidden="true">&times;</span>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormName">Username*</label>-->
-<!--              <input type="text" ngModel name="username" class="form-control" id="addFormUsername" placeholder="Username" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormPassword">Password*</label>-->
-<!--              <input type="text" ngModel name="password" class="form-control" id="addFormPassword" placeholder="Password" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormFirstname">Firstname</label>-->
-<!--              <input type="text" ngModel name="firstname" class="form-control" id="addFormFirstname" placeholder="Firstname" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormName">Name</label>-->
-<!--              <input type="text" ngModel name="name" class="form-control" id="addFormName" placeholder="Name" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormEmail">Email</label>-->
-<!--              <input type="email" ngModel name="email" class="form-control" id="addFormEmail" placeholder="Email" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormTelephone">Telephone</label>-->
-<!--              <input type="text" ngModel name="telephone" class="form-control" id="addFormTelephone" placeholder="Telephone" required>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--              <label for="addFormImageUrl">Image URL</label>-->
-<!--              <input type="text" ngModel name="imageUrl" class="form-control" id="addFormImageUrl" placeholder="Image URL" required>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--              <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>-->
-<!--            </div>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--&lt;!&ndash;  &lt;!&ndash; Edit Modal &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;  <div class="modal fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;    <div class="modal-dialog" role="document">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;      <div class="modal-content">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <div class="modal-header">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          <h5 class="modal-title" id="updateEmployeeModalLabel">Edit User {{editUser?.name}}</h5>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <span aria-hidden="true">&times;</span>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          </button>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <div class="modal-body">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          <form #editForm="ngForm">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <input type="hidden" ngModel="{{editUser?.id}}" name="id" class="form-control" id="editFormId">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div class="form-group">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <label for="editFormName">Name</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <input type="text" ngModel="{{editUser?.name}}" name="name" class="form-control" id="editFormName" placeholder="Name">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div class="form-group">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <label for="editFormEmail">Email Address</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <input type="email" ngModel="{{editUser?.email}}" name="email" class="form-control" id="editFormEmail" placeholder="Email">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div class="form-group">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <label for="editFormTelephone">Telephone</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <input type="text" ngModel="{{editUser?.telephone}}" name="telephone" class="form-control" id="editFormTelephone" placeholder="Phone">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div class="form-group">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <label for="editFormImageUrl">Image URL</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <input type="text" ngModel="{{editUser?.imageUrl}}" name="imageUrl" class="form-control" id="editFormImageUrl" placeholder="Image URL">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div class="modal-footer">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;              <button (click)="onUpdateUser(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save changes</button>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          </form>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;      </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;    </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;  </div>&ndash;&gt;&ndash;&gt;-->
-
-<!--  &lt;!&ndash; Delete Modal &ndash;&gt;-->
-<!--&lt;!&ndash;  <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="modal-dialog" role="document">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="modal-content">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="modal-header">&ndash;&gt;-->
-<!--&lt;!&ndash;          <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>&ndash;&gt;-->
-<!--&lt;!&ndash;          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&ndash;&gt;-->
-<!--&lt;!&ndash;            <span aria-hidden="true">&times;</span>&ndash;&gt;-->
-<!--&lt;!&ndash;          </button>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="modal-body">&ndash;&gt;-->
-<!--&lt;!&ndash;          <p>Are you sure you want to delete user {{deleteUser.username}}?</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div class="modal-footer">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>&ndash;&gt;-->
-<!--&lt;!&ndash;            <button (click)="onDeleteUser(deleteUser)" class="btn btn-danger" data-dismiss="modal">Yes</button>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-
-<!--  &lt;!&ndash; Notification for no users &ndash;&gt;-->
-<!--  <div *ngIf="users.length === 0" class="col-lg-12 col-md-12 col-xl-12">-->
-<!--    <div class="alert alert-info" role="alert">-->
-<!--      <h4 class="alert-heading">NO USERS!</h4>-->
-<!--      <p>No Users were found.</p>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--</div>-->
+<div class="row">
+  <div *ngFor="let user of users" class="col-md-6 col-xl-3">
+    <div class="card m-b-30">
+      <div class="card-body row">
+        <div class="col-6">
+<!--          <a href=""><img src="{{user?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>-->
+        </div>
+        <div class="col-6 card-title align-self-center mb-0">
+          <h5>{{user.username}}</h5>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Username : {{user.username}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : {{user.email}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Roles : <span *ngFor="let role of user.roles">{{role.name}}, </span></li>
+      </ul>
+      <div class="card-body">
+        <div class="float-right btn-group btn-group-sm">
+<!--          <a (click)="onOpenModal(user, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
+<!--          <a (click)="onOpenModal(user, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

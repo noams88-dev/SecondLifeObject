@@ -1,11 +1,11 @@
-<div *ngIf="info.token; else loggedOut">
+<div *ngIf="isLoggedIn; else loggedOut">
   <h5 class="text-primary">Information</h5>
   <p>
-    <strong>Username:</strong> {{info.username}}<br/>
-    <strong>Roles:</strong> {{info.authorities}}<br/>
-    <strong>Token:</strong> {{info.token}}
+    <strong>Username:</strong> {{username}}<br/>
+    <strong>Roles:</strong> {{roles}}<br/>
+    <strong>Token:</strong> {{token}}
   </p>
-  <button class="btn btn-secondary" (click)="logout()">Logout</button>
+  <button class="btn btn-secondary" (click)="logout()">Déconnexion</button>
 </div>
 
 <ng-template #loggedOut>
@@ -16,7 +16,7 @@
         <input type="text" class="form-control" name="username" id="username" [(ngModel)]="form.username" #username="ngModel"
                required />
         <div *ngIf="f.submitted && username.invalid">
-<!--          <div *ngIf="username.errors.required">Username is required</div>-->
+          <div *ngIf="username.hasError('required')">Username obligatoire</div>
         </div>
       </div>
       <div class="form-group">
@@ -24,14 +24,14 @@
         <input type="password" class="form-control" name="password" id="password" [(ngModel)]="form.password" #password="ngModel"
                required minlength="6" />
         <div *ngIf="f.submitted && password.invalid">
-<!--          <div *ngIf="password.errors.required">Password is required</div>-->
-<!--          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>-->
+          <div *ngIf="password.hasError('required')">Mot de passe obligatoire</div>
+          <div *ngIf="password.hasError('minlength')">Le mot de passe doit contenir 6 caractères au minimum</div>
         </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Se connecter</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-          Echec de la connection : {{errorMessage}}
+          Echec de la connection !
         </div>
       </div>
     </form>

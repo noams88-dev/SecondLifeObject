@@ -1,20 +1,13 @@
 import {Injectable} from '@angular/core';
-import {User} from '../../model/user';
-import {UserService} from '../user.service';
-import {AuthService} from './auth.service';
 
 const TOKEN_KEY = 'AuthToken';
-const USERNAME_KEY = 'AuthUsername';
-const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
 
-  private roles: Array<string> = [];
-
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor() { }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -29,28 +22,15 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY) as string;
   }
 
-  saveUsername(username: string): void {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
-  }
-
   getUsername(): string {
-    return sessionStorage.getItem(USERNAME_KEY) as string;
+    return JSON.parse(atob(this.getToken().split('.')[1])).sub;
   }
 
-  saveAuthorities(authorities: string[]): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  getRoles(): string[] {
+    return JSON.parse(atob(this.getToken().split('.')[1])).roles;
   }
 
-  getAuthorities(): string[] {
-    this.roles = [];
-    if (sessionStorage.getItem(TOKEN_KEY)) {
-      // @ts-ignore
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY) as string).forEach(authority => { // "as string" perso
-        this.roles.push(authority.authority);
-      });
-    }
-    return this.roles;
+  getExpirationToken(): string[] {
+    return JSON.parse(atob(this.getToken().split('.')[1])).exp;
   }
 }

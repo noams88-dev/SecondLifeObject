@@ -12,6 +12,7 @@ import {RegisterComponent} from './component/register/register.component';
 import {LoginComponent} from './component/login/login.component';
 import {AdminHomeComponent} from './component/admin/admin-home/admin-home.component';
 import {httpInterceptorProviders} from '../service/auth/auth-interceptor';
+import { NavbarComponent } from './component/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {httpInterceptorProviders} from '../service/auth/auth-interceptor';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
