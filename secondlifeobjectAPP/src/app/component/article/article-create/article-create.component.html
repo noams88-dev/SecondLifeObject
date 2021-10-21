@@ -1,0 +1,51 @@
+<div class="row col-sm-6" style="max-width:350px;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" id="name" [(ngModel)]="article.name" #name="ngModel" required />
+      <!--      <div *ngIf="f.submitted && username.invalid">-->
+      <!--        <div *ngIf="username.hasError('required')">Username obligatoire</div>-->
+      <!--      </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" name="description" id="description" [(ngModel)]="article.description" #description="ngModel" required ></textarea>
+      <!--      <div *ngIf="f.submitted && email.invalid">-->
+      <!--        <div *ngIf="email.hasError('required')">Email obligatoire</div>-->
+      <!--        <div *ngIf="email.hasError('email')">Email non valide</div>-->
+      <!--      </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="auctionStartDate">auctionStartDate</label>
+      <input type="datetime-local" class="form-control" name="auctionStartDate" id="auctionStartDate" [(ngModel)]="article.auctionStartDate" #auctionStartDate="ngModel" required />
+    </div>
+
+    <div class="form-group">
+      <label for="auctionEndDate">auctionEndDate</label>
+      <input type="datetime-local" class="form-control" name="auctionEndDate" id="auctionEndDate" [(ngModel)]="article.auctionEndDate" #auctionEndDate="ngModel" required />
+    </div>
+
+    <div class="form-group">
+      <label for="initialPrice">initialPrice</label>
+      <input type="number" class="form-control" name="initialPrice" id="initialPrice" [(ngModel)]="article.initialPrice" #initialPrice="ngModel" required />
+    </div>
+
+    <div class="form-group">
+      <input type="file" class="file-input">
+<!--      <div class="file-upload">-->
+<!--        {{fileName || "No file uploaded yet."}}-->
+<!--        <button class="btn btn-grey" (click)="fileUpload.click()">Importer</button>-->
+<!--      </div>-->
+    </div>
+
+    <hr>
+    <span>test : {{article.description}}</span>
+
+    <div class="form-group">
+      <button class="btn btn-primary">Enregistrer</button>
+    </div>
+  </form>
+</div>

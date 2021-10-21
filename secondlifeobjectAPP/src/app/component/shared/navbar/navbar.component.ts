@@ -8,9 +8,9 @@ import {TokenStorageService} from '../../../../service/auth/token-storage.servic
 })
 export class NavbarComponent implements OnInit {
 
-  authority: string;
+  authority = '';
 
-  constructor(private tokenStorage: TokenStorageService) { }
+  constructor(public tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getUserWithToken();
@@ -29,5 +29,10 @@ export class NavbarComponent implements OnInit {
         this.authority = 'USER';
       }
     }
+  }
+
+  logout(): void {
+    this.tokenStorage.signOut();
+    window.location.reload();
   }
 }

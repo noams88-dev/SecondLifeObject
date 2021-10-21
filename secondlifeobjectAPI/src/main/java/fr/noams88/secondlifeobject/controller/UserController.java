@@ -20,34 +20,34 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        User user = userService.findUserById(id);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<User> get(@PathVariable("id") Long id) {
+        User user = userService.getById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAllUsers();
+    @PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
+    public ResponseEntity<List<User>> getAll() {
+        List<User> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User addedUser = userService.addUser(user);
-        return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
+    public ResponseEntity<User> add(@RequestBody User user) {
+        User userReturn = userService.add(user);
+        return new ResponseEntity<>(userReturn, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        User updatedUser = userService.updateUser(user);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    public ResponseEntity<User> update(@RequestBody User user) {
+        User userReturn = userService.update(user);
+        return new ResponseEntity<>(userReturn, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<User> delete(@PathVariable("id") Long id) {
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

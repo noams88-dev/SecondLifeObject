@@ -5,7 +5,6 @@
     <strong>Roles:</strong> {{roles}}<br/>
     <strong>Token:</strong> {{token}}
   </p>
-  <button class="btn btn-secondary" (click)="logout()">Déconnexion</button>
 </div>
 
 <ng-template #loggedOut>
@@ -28,6 +27,7 @@
           <div *ngIf="password.hasError('minlength')">Le mot de passe doit contenir 6 caractères au minimum</div>
         </div>
       </div>
+      <hr/>
       <div class="form-group">
         <button class="btn btn-primary">Se connecter</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
@@ -35,9 +35,7 @@
         </div>
       </div>
     </form>
-    <hr/>
-    <p>Vous n'avez pas de compte ?</p>
-    <a class="btn btn-success" routerLink="../register">S'inscrire</a>
+
   </div>
 </ng-template>
 

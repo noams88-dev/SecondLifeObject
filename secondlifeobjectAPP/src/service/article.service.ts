@@ -10,26 +10,27 @@ import {Article} from '../model/article';
 export class ArticleService {
 
   private apiServerUrl = environment.apiBaseUrl;
+  private urlBody = '/api/article';
 
   constructor(private httpClient: HttpClient) { }
 
-  getArticle(id: number): Observable<Article> {
-    return this.httpClient.get<Article>(`${this.apiServerUrl}/api/article/find/${id}`);
+  get(id: number): Observable<Article> {
+    return this.httpClient.get<Article>(`${this.apiServerUrl}${this.urlBody}/get/${id}`);
   }
 
-  getAllArticles(): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${this.apiServerUrl}/api/article/all`);
+  getAll(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${this.apiServerUrl}${this.urlBody}/all`);
   }
 
-  addArticle(article: Article): Observable<Article> {
-    return this.httpClient.post<Article>(`${this.apiServerUrl}/api/article/add`, article);
+  add(article: Article): Observable<Article> {
+    return this.httpClient.post<Article>(`${this.apiServerUrl}${this.urlBody}/add`, article);
   }
 
-  updateArticle(article: Article): Observable<Article> {
-    return this.httpClient.put<Article>(`${this.apiServerUrl}/api/article/update`, article);
+  update(article: Article): Observable<Article> {
+    return this.httpClient.put<Article>(`${this.apiServerUrl}${this.urlBody}/update`, article);
   }
 
-  deleteArticle(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiServerUrl}/api/article/delete/${id}`);
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiServerUrl}${this.urlBody}/delete/${id}`);
   }
 }

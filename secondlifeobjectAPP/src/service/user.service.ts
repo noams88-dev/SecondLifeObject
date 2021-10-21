@@ -10,26 +10,27 @@ import {environment} from '../environments/environment';
 export class UserService {
 
   private apiServerUrl = environment.apiBaseUrl;
+  private urlBody = '/api/user';
 
   constructor(private httpClient: HttpClient) { }
 
-  getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(`${this.apiServerUrl}/api/user/find/${id}`);
+  get(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${this.apiServerUrl}${this.urlBody}/get/${id}`);
   }
 
-  getAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.apiServerUrl}/api/user/all`);
+  getAll(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.apiServerUrl}${this.urlBody}/all`);
   }
 
-  addUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.apiServerUrl}/api/user/add`, user);
+  add(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.apiServerUrl}${this.urlBody}/add`, user);
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${this.apiServerUrl}/api/user/update`, user);
+  update(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.apiServerUrl}${this.urlBody}/update`, user);
   }
 
-  deleteUser(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiServerUrl}/api/user/delete/${id}`);
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiServerUrl}${this.urlBody}/delete/${id}`);
   }
 }

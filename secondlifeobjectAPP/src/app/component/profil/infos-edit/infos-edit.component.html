@@ -1,0 +1,59 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Full Name</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" />
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Email</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" />
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Phone</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="text" class="form-control" name="phone" [(ngModel)]="user.phone" #phone="ngModel" />
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Address</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          Waiting
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Image</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="file" class="file-input" name="imageUrl" [(ngModel)]="user.imageUrl" #imageUrl="ngModel" />
+        </div>
+      </div>
+      <hr>
+      <button class="btn btn-outline-primary" (click)="changeTemplate('show')">Enregistrer</button>
+    </form>
+  </div>
+</div>

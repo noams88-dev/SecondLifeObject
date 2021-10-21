@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <img *ngIf="user.imageUrl; else defaultAvatar" src="{{user.imageUrl}}" alt="image avatar" class="rounded-circle" width="150px">
+          <ng-template #defaultAvatar>
+            <img src="assets/images/default_avatar.png" alt="image avatar" class="rounded-circle" width="150px">
+          </ng-template>
+          <div class="mt-3">
+            <h4>{{user.username}}</h4>
+            <p class="text-secondary mb-1">Jobs</p>
+            <p class="text-muted font-size-sm">Localisation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <app-infos *ngIf="test === 'show'; else componentEdit" [user]="user" (event)="changeTemplate($event)"></app-infos>
+    <ng-template #componentEdit>
+      <app-infos-edit [user]="user" (event)="changeTemplate($event)"></app-infos-edit>
+    </ng-template>
+  </div>
+</div>

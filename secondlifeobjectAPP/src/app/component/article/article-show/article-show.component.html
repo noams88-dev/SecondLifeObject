@@ -1,0 +1,21 @@
+<div class="row">
+  <div *ngFor="let article of articles" class="col-md-6 col-xl-3">
+    <div class="card m-b-30">
+      <div class="card-body row">
+        <div class="col-6">
+          <!--          <a href=""><img src="{{user?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>-->
+        </div>
+        <div class="col-6 card-title align-self-center mb-0">
+          <h5>{{article.name}}</h5>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>auctionStartDate : {{article.auctionStartDate}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>auctionEndDate : {{article.auctionEndDate}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Description : {{article.description}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Prix : {{article.initialPrice}}</li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Publié par : {{article.user.username}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

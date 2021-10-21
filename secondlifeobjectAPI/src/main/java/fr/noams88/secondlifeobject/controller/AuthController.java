@@ -17,7 +17,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -115,10 +114,10 @@ public class AuthController {
 	}
 
 	// Récupération des informations de l'utilisateur connecté
-	@PostMapping("/infoUser")
-	public ResponseEntity<User> getConnectedUser(@RequestBody String token) {
+	@PostMapping("/getUser")
+	public ResponseEntity<User> getUser(@RequestBody String token) {
 		String username = tokenProvider.getUsernameFromJwtToken(token);
-		User user = userService.findUserByUsername(username);
+		User user = userService.getByUsername(username);
 
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}

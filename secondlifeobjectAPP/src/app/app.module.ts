@@ -13,6 +13,15 @@ import {LoginComponent} from './component/login/login.component';
 import {AdminHomeComponent} from './component/admin/admin-home/admin-home.component';
 import {httpInterceptorProviders} from '../service/auth/auth-interceptor';
 import { NavbarComponent } from './component/shared/navbar/navbar.component';
+import { ProfilComponent } from './component/profil/profil.component';
+import { InfosComponent } from './component/profil/infos/infos.component';
+import { InfosEditComponent } from './component/profil/infos-edit/infos-edit.component';
+import { ArticleShowComponent } from './component/article/article-show/article-show.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
+import { ArticleCreateComponent } from './component/article/article-create/article-create.component';
+import { LoginActivate } from '../service/auth/login-activate';
+import { TestDirective } from './directive/test.directive';
+import { Page404Component } from './component/PageNotFound/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +30,15 @@ import { NavbarComponent } from './component/shared/navbar/navbar.component';
     RegisterComponent,
     LoginComponent,
     AdminHomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfilComponent,
+    InfosComponent,
+    InfosEditComponent,
+    ArticleShowComponent,
+    ArticleEditComponent,
+    ArticleCreateComponent,
+    TestDirective,
+    Page404Component
   ],
   imports: [
     BrowserModule,
@@ -33,6 +50,7 @@ import { NavbarComponent } from './component/shared/navbar/navbar.component';
     httpInterceptorProviders,
     UserService,
     ArticleService,
+    LoginActivate
   ],
   bootstrap: [AppComponent]
 })

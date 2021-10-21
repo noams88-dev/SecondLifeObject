@@ -1,5 +1,6 @@
 package fr.noams88.secondlifeobject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -56,7 +57,8 @@ public class User {
 
     private String imageUrl;
 
-    @OneToMany(targetEntity=Article.class, mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Article> articles = new HashSet<>();
 
     public User() { }
@@ -69,7 +71,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String username,
+    public User(Long id,
+                String username,
                 String email,
                 String password,
                 Set<Role> roles,
@@ -79,6 +82,7 @@ public class User {
                 String phone,
                 String imageUrl,
                 Set<Article> articles) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -175,7 +179,10 @@ public class User {
         return articles;
     }
 
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
+    public void addArticle(Article article) {
+        if (!this.articles.contains(article)) {
+            this.articles.add(article);
+            article.setUser(this);
+        }
     }
 }

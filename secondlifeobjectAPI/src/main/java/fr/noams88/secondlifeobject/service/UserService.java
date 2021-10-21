@@ -16,31 +16,31 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User findUserByUsername(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundExeption("L'utilisateur avec l'username " + username + " n'a pas été trouvé"));
     }
 
-    public User findUserById(Long id) {
+    public User getById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundExeption("L'utilisateur avec l'id " + id + " n'a pas été trouvé"));
     }
 
-    public List<User> findAllUsers() {
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
-    public User addUser(User user) {
+    public User add(User user) {
         return userRepository.save(user);
     }
 
-    public User updateUser(User user) {
-        this.findUserById(user.getId());
+    public User update(User user) {
+        this.getById(user.getId());
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
-        this.findUserById(id);
+    public void delete(Long id) {
+        this.getById(id);
         userRepository.deleteById(id);
     }
 }

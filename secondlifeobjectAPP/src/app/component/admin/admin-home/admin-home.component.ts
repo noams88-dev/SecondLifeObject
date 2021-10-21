@@ -20,8 +20,9 @@ export class AdminHomeComponent implements OnInit {
   }
 
   getAllUsers(): void {
-    this.userService.getAllUsers().subscribe(
+    this.userService.getAll().subscribe(
       (response: User[]) => {
+        console.log(response);
         this.users = response;
       },
       (error: HttpErrorResponse) => {
